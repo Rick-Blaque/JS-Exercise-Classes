@@ -40,23 +40,23 @@ class Airplane {
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
-  
+  //use names of attibutes if using parameters use attras a paramenter if they are suppling an object
  class Person {
-    constructor(att) {
-      this.name = att.name;
-      this.age = att.age;
+    constructor(name, age) {
+      this.name = name;
+      this.age = age;
       this.stomach = [];
     }
     eat(food) {
       if(this.stomach.length < 10){
-      this.stomach.push(food)
+      this.stomach.push(food);
       }
     }
     poop() {
-      this.stomach = []
+      this.stomach = [];
     }
     toString() {
-      return `${this.name}, ${this.age}`
+      return `${this.name}, ${this.age}`;
     }
 
   }
@@ -76,9 +76,9 @@ class Airplane {
   */
   
  class Car {
-    constructor(att) {
-      this.model = att.model;
-      this.milesPerGallon = att.milesPerGallon;
+    constructor(model, milesPerGallon) {
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
       this.tank = 0;
       this.odometer = 0;
     }
@@ -86,14 +86,44 @@ class Airplane {
       this.tank += gallons
     }
     drive(distance) {
-      this.tank = distance / this.milesPerGallon
-      if(this.tank === 0) {
+        // 100        50 miles aval
+        let drivableDistance = this.tank / this.milesPerGallon
+      if(distance  <=  drivableDistance){
+        this.tank -= distance / this.milesPerGallon;
+        this.odometer += distance
+      } else if(distance > drivableDistance){
+        
+       // this.odometer += (this.tank / this.milesPerGallon) //dist = 100 - 20
+        this.tank = 0;
+        this.odometer += (this.tank / this.milesPerGallon)
         return `I ran out of fuel at ${this.odometer} miles!`
       }
-      this.odometer += distance;
+      // let drivableDistance = this.tank / this.milesPerGallon;
+      // if(drivableDistance - distance <= 0){
+      //   this.odometer += drivableDistance;
+      //   this.tank -= drivableDistance;
+      //   return `I ran out of fuel at ${this.odometer} miles!`
+      //  } else {
+      //   this.odometer += distance;
+      //   this.tank -= distance / this.milesPerGallon 
+       }
+       // this.odometer = (distance / this.milesPerGallon) - ((distance / this.milesPerGallon) - this.tank)
+     
+      
+      // if(this.tank - (drivableDistance) <= 0 ) {
+      //   this.tank = 0; 
+
+      //   }
+      //   if(this.tank == 0){
+      //   return `I ran out of fuel at ${this.odometer} miles!`
+      //   }
+      
+      
+      // this.tank = this.tank - (distance / this.milesPerGallon)
+      
       
     }
-  }
+  
   
   /*
     TASK 3
@@ -163,8 +193,33 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian{
+     constructor(att){
+       super(att);
+       this.previousBackground = att.previousBackground;
+       this.className = att.className;
+       this.favSubjects = att.favSubjects;
+     }
+     listSubjects() {
+       
+       let favs = 'Loving';
+        for (let i = 0; i < this.favSubjects.length; i++){
+          if (i !== this.favSubjects.length - 1){
+            favs += ` ${this.favSubjects[i]},`
+          }else {
+            favs += ` ${this.favSubjects[i]}!`
+          }
+          
+        }
+      return  favs ;
+     }
+     PRAssignment(subject) {
+       return `${this.name} has submitted a PR for ${subject}`
+     }
+     sprintChallenge(subject) {
+       return `${this.name} has submitted a PR for ${subject}`
+     }
+
  }
   
   /*
@@ -180,7 +235,18 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
+ class ProjectManager extends Instructor{
+   constructor(att){
+     super(att);
+     this.gradClassName = att.gradClassName;
+     this.favInstructor = att.favInstructor
+   }
+   standUp(channel) {
+     return `${this.name} announces to ${channel}, @channel standy times!`
+   }
+   debugsCode(student, subject) {
+     return `${this.name} debugs ${student.name}'s code on ${subject}`
+   }
      
  }
   /*
