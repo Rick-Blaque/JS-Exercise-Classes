@@ -76,55 +76,31 @@ class Airplane {
   */
   
  class Car {
+    
     constructor(model, milesPerGallon) {
       this.model = model;
       this.milesPerGallon = milesPerGallon;
       this.tank = 0;
       this.odometer = 0;
     }
+
     fill(gallons) {
       this.tank += gallons;
     }
+    
     drive(distance) {
-        // 100        50 miles aval
-        let drivableDistance = this.tank * this.milesPerGallon
-      if(distance  <=  drivableDistance){
-        this.tank -= distance / this.milesPerGallon;
-        this.odometer += distance
-      } else if(distance > drivableDistance){
-        
-       // this.odometer += (this.tank / this.milesPerGallon) //dist = 100 - 20
-        //this.tank = 0;
-        
-        this.odometer += (this.tank * this.milesPerGallon)
-        this.tank = 0;
-        return `I ran out of fuel at ${this.odometer} miles!`
+       let drivableDistance = this.tank * this.milesPerGallon
+      
+        if(distance  <=  drivableDistance){
+          this.tank -= distance / this.milesPerGallon;
+          this.odometer += distance
+        }else if(distance > drivableDistance){
+          this.odometer += (this.tank * this.milesPerGallon)
+          this.tank = 0;
+          return `I ran out of fuel at ${this.odometer} miles!`
+        }
       }
-      // let drivableDistance = this.tank / this.milesPerGallon;
-      // if(drivableDistance - distance <= 0){
-      //   this.odometer += drivableDistance;
-      //   this.tank -= drivableDistance;
-      //   return `I ran out of fuel at ${this.odometer} miles!`
-      //  } else {
-      //   this.odometer += distance;
-      //   this.tank -= distance / this.milesPerGallon 
-       }
-       // this.odometer = (distance / this.milesPerGallon) - ((distance / this.milesPerGallon) - this.tank)
-     
-      
-      // if(this.tank - (drivableDistance) <= 0 ) {
-      //   this.tank = 0; 
-
-      //   }
-      //   if(this.tank == 0){
-      //   return `I ran out of fuel at ${this.odometer} miles!`
-      //   }
-      
-      
-      // this.tank = this.tank - (distance / this.milesPerGallon)
-      
-      
-    }
+   }
   
   
   /*
